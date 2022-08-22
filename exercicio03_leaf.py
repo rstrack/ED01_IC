@@ -1,5 +1,5 @@
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 import time
@@ -19,8 +19,17 @@ print(f'Score: {accuracy}')
 print(classification_report(l_test, dt_pred))
 
 #NAIVE BAYES LEAF
-print("#################### NAIVE BAYES #########################")
-gnb = GaussianNB().fit(df_train, l_train)
+print("#################### MULTINOMIAL NAIVE BAYES #########################")
+mnb = MultinomialNB()
+mnb.fit(df_train, l_train)
+mnb_pred = mnb.predict(df_test)
+accuracy = mnb.score(df_test, l_test)
+print(f'Score: {accuracy}')
+print(classification_report(l_test, mnb_pred))
+
+print("#################### GAUSSIAN NAIVE BAYES #########################")
+gnb = GaussianNB()
+gnb.fit(df_train, l_train)
 gnb_pred = gnb.predict(df_test)
 accuracy = gnb.score(df_test, l_test)
 print(f'Score: {accuracy}')

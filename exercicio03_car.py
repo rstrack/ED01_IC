@@ -1,5 +1,5 @@
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import GaussianNB, MultinomialNB, ComplementNB
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import classification_report
 from sklearn.preprocessing import LabelEncoder
@@ -33,7 +33,7 @@ print("#################### NAIVE BAYES #########################")
 
 #NAIVE BAYES
 
-gnb = GaussianNB()
+gnb = MultinomialNB()
 gnb.fit(df_train, l_train)
 gnb_pred = gnb.predict(df_test)
 accuracy = gnb.score(df_test, l_test)
