@@ -1,3 +1,4 @@
+import warnings
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.naive_bayes import GaussianNB, MultinomialNB, ComplementNB,BernoulliNB
 from sklearn.model_selection import train_test_split
@@ -5,6 +6,8 @@ from sklearn.metrics import classification_report
 from sklearn.preprocessing import LabelEncoder
 import time
 import pandas as p
+
+warnings.filterwarnings('ignore')
 
 df = p.read_csv(u'./car/car.data', header=None)
 
@@ -25,7 +28,7 @@ dt.fit(df_train, l_train)
 dt_pred = dt.predict(df_test)
 
 accuracy = dt.score(df_test, l_test)
-print(f'Score: {accuracy}')
+print(f'Acurácia: {accuracy}')
 
 print(classification_report(l_test, dt_pred))
 
@@ -37,5 +40,5 @@ gnb = BernoulliNB()
 gnb.fit(df_train, l_train)
 gnb_pred = gnb.predict(df_test)
 accuracy = gnb.score(df_test, l_test)
-print(f'Score: {accuracy}')
+print(f'Acurácia: {accuracy}')
 print(classification_report(l_test, gnb_pred))
